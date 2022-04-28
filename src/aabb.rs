@@ -60,7 +60,7 @@ where
                 return false;
             }
         }
-        return true;
+        true
     }
 
     /// Checks if the point is inside of the bounding box.
