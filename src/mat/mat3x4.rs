@@ -5,6 +5,7 @@ use std::ops::Mul;
 pub type Mat3x4f = Mat3x4<f32>;
 pub type Mat3x4d = Mat3x4<f64>;
 
+#[derive(Debug)]
 #[repr(C)]
 pub struct Mat3x4<F>
 where
@@ -23,6 +24,19 @@ where
     #[inline]
     pub fn new(r0: Vec4<F>, r1: Vec4<F>, r2: Vec4<F>) -> Self {
         Self { r0, r1, r2 }
+    }
+
+    /// Indexes matrix's columns.
+    /// # Panics
+    /// If index is `>2`.
+    #[inline]
+    pub fn column<const I: usize>(&self) -> Vec3<F> {
+        match I {
+            0 => Vec3::new(self.r0.x, self.r1.x, self.r2.x),
+            1 => Vec3::new(self.r0.y, self.r1.y, self.r2.y),
+            2 => Vec3::new(self.r0.z, self.r1.z, self.r2.z),
+            _ => panic!("Index out of range")
+        }
     }
 
     /// Creates new identity matrix.
