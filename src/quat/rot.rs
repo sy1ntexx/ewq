@@ -79,7 +79,7 @@ where
 
     /// Creates new identity quaternion.
     #[inline]
-    pub fn idenitity() -> Self {
+    pub fn identity() -> Self {
         Self {
             w: F::one(),
             v: Vec3::zero(),

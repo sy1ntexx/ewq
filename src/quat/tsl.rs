@@ -26,9 +26,9 @@ where
     }
 
     #[inline]
-    pub fn idenitity() -> Self {
+    pub fn identity() -> Self {
         Self {
-            q: Quat::idenitity(),
+            q: Quat::identity(),
             t: Vec3::zero(),
         }
     }

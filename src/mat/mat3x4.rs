@@ -25,9 +25,9 @@ where
         Self { r0, r1, r2 }
     }
 
-    /// Creates new idenitity matrix.
+    /// Creates new identity matrix.
     #[inline]
-    pub fn idenitity() -> Self {
+    pub fn identity() -> Self {
         Self {
             r0: Vec4::new(F::one(), F::zero(), F::zero(), F::zero()),
             r1: Vec4::new(F::zero(), F::one(), F::zero(), F::zero()),
