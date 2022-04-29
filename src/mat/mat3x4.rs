@@ -26,15 +26,27 @@ where
         Self { r0, r1, r2 }
     }
 
+    /// Indexes matrix's rows.
+    #[inline]
+    pub fn row<const I: usize>(&self) -> Vec4<F> {
+        match I {
+            0 => self.r0,
+            1 => self.r1,
+            2 => self.r2,
+            _ => panic!("Index out of range")
+        }
+    }
+
     /// Indexes matrix's columns.
     /// # Panics
-    /// If index is `>2`.
+    /// If index is `>3`.
     #[inline]
     pub fn column<const I: usize>(&self) -> Vec3<F> {
         match I {
             0 => Vec3::new(self.r0.x, self.r1.x, self.r2.x),
             1 => Vec3::new(self.r0.y, self.r1.y, self.r2.y),
             2 => Vec3::new(self.r0.z, self.r1.z, self.r2.z),
+            3 => Vec3::new(self.r0.w, self.r1.w, self.r2.w),
             _ => panic!("Index out of range")
         }
     }
