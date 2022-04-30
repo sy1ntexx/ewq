@@ -11,9 +11,9 @@ pub struct Mat3x4<F>
 where
     F: Float,
 {
-    pub r0: Vec4<F>,
-    pub r1: Vec4<F>,
-    pub r2: Vec4<F>,
+    r0: Vec4<F>,
+    r1: Vec4<F>,
+    r2: Vec4<F>,
 }
 
 impl<F> Mat3x4<F>
@@ -26,7 +26,9 @@ where
         Self { r0, r1, r2 }
     }
 
-    /// Indexes matrix's rows.
+    /// Gets matrix's row by index.
+    /// # Panics
+    /// If index is `>2`.
     #[inline]
     pub fn row<const I: usize>(&self) -> Vec4<F> {
         match I {
@@ -37,7 +39,20 @@ where
         }
     }
 
-    /// Indexes matrix's columns.
+    /// Sets matrix's row by index.
+    /// # Panics
+    /// If index is `>2`.
+    #[inline]
+    pub fn set_row<const I: usize>(&mut self, row: Vec4<F>) {
+        match I {
+            0 => self.r0 = row,
+            1 => self.r1 = row,
+            2 => self.r2 = row,
+            _ => panic!("Index out of range")
+        }
+    }
+
+    /// Gets matrix's column by index.
     /// # Panics
     /// If index is `>3`.
     #[inline]
@@ -47,6 +62,36 @@ where
             1 => Vec3::new(self.r0.y, self.r1.y, self.r2.y),
             2 => Vec3::new(self.r0.z, self.r1.z, self.r2.z),
             3 => Vec3::new(self.r0.w, self.r1.w, self.r2.w),
+            _ => panic!("Index out of range"),
+        }
+    }
+
+    /// Sets matrix's column by index.
+    /// # Panics
+    /// If index is `>3`.
+    #[inline]
+    pub fn set_column<const I: usize>(&mut self, column: Vec3<F>) {
+        match I {
+            0 => {
+                self.r0.x = column.x;
+                self.r1.x = column.y;
+                self.r2.x = column.z;
+            }
+            1 => {
+                self.r0.y = column.x;
+                self.r1.y = column.y;
+                self.r2.y = column.z;
+            }
+            2 => {
+                self.r0.z = column.x;
+                self.r1.z = column.y;
+                self.r2.z = column.z;
+            }
+            3 => {
+                self.r0.w = column.x;
+                self.r1.w = column.y;
+                self.r2.w = column.z;
+            }
             _ => panic!("Index out of range"),
         }
     }
