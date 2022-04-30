@@ -6,15 +6,13 @@ pub mod ang;
 pub mod vec;
 /// Axis aligned bounding boxes.
 pub mod aabb;
+/// Matricies.
+pub mod mat;
 
 mod complex;
 pub use complex::*;
 
 mod quat;
 pub use quat::*;
-
-
-mod mat;
-pub use mat::*;
 
 mod macros;
