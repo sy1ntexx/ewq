@@ -25,6 +25,7 @@ where
         }
     }
 
+    /// Creates new [`QuatT`] with identity rotation and 0 translation.
     #[inline]
     pub fn identity() -> Self {
         Self {
@@ -37,5 +38,11 @@ where
     #[inline]
     pub fn apply(&self, vector: Vec3<F>) -> Vec3<F> {
         self.q.rotate(vector) + self.t
+    }
+
+    /// Applies translation and then rotation to the vector.
+    #[inline]
+    pub fn apply_reverse(&self, vector: Vec3<F>) -> Vec3<F> {
+        self.q.rotate(vector + self.t)
     }
 }

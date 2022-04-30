@@ -33,7 +33,7 @@ where
             0 => self.r0,
             1 => self.r1,
             2 => self.r2,
-            _ => panic!("Index out of range")
+            _ => panic!("Index out of range"),
         }
     }
 
@@ -47,7 +47,7 @@ where
             1 => Vec3::new(self.r0.y, self.r1.y, self.r2.y),
             2 => Vec3::new(self.r0.z, self.r1.z, self.r2.z),
             3 => Vec3::new(self.r0.w, self.r1.w, self.r2.w),
-            _ => panic!("Index out of range")
+            _ => panic!("Index out of range"),
         }
     }
 

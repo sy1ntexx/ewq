@@ -1,6 +1,6 @@
-use crate::vec::Vec3;
-use num_traits::Float;
 use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Sub, SubAssign};
+use num_traits::Float;
+use crate::vec::Vec3;
 
 pub type Quatf = Quat<f32>;
 pub type Quatd = Quat<f64>;
