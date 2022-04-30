@@ -15,4 +15,4 @@ pub use complex::*;
 mod quat;
 pub use quat::*;
 
-mod macros;
+pub mod macros;
