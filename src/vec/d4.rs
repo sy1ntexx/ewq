@@ -1,6 +1,6 @@
-use super::{Vec2, Vec3, Vector, VectorConst};
-use num_traits::Float;
 use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
+use super::{Vec2, Vec3};
+use num_traits::Float;
 
 pub type Vec4f = Vec3<f32>;
 pub type Vec4d = Vec3<f64>;
@@ -157,60 +157,6 @@ where
         self.y = self.y / l;
         self.z = self.z / l;
         self.w = self.w / l;
-    }
-}
-
-impl<F> VectorConst<F> for Vec4<F>
-where
-    F: Float,
-{
-    const SIZE: usize = 3;
-
-    fn get<const I: usize>(&self) -> F {
-        match I {
-            0 => self.x,
-            1 => self.y,
-            2 => self.z,
-            3 => self.w,
-            _ => panic!("Index out of range. Expected 0..=2"),
-        }
-    }
-
-    fn set<const I: usize>(&mut self, v: F) {
-        match I {
-            0 => self.x = v,
-            1 => self.y = v,
-            2 => self.z = v,
-            3 => self.w = v,
-            _ => panic!("Index out of range. Expected 0..=2"),
-        }
-    }
-}
-
-impl<F> Vector<F> for Vec4<F>
-where
-    F: Float,
-{
-    const SIZE: usize = 3;
-
-    fn get(&self, i: usize) -> F {
-        match i {
-            0 => self.x,
-            1 => self.y,
-            2 => self.z,
-            3 => self.w,
-            _ => panic!("Index out of range. Expected 0..=2"),
-        }
-    }
-
-    fn set(&mut self, i: usize, v: F) {
-        match i {
-            0 => self.x = v,
-            1 => self.y = v,
-            2 => self.z = v,
-            3 => self.w = v,
-            _ => panic!("Index out of range. Expected 0..=2"),
-        }
     }
 }
 

@@ -5,8 +5,8 @@ pub type Ang3f = Ang3<f32>;
 pub type Ang3d = Ang3<f32>;
 
 /// Represents rotation angles in right hand coordinate system with:
-/// * `+Y` - Forward
-/// * `+X` - Right
+/// * `+X` - Forward
+/// * `-Y` - Right
 /// * `+Z` - Top
 #[repr(C)]
 pub struct Ang3<F>

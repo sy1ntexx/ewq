@@ -1,6 +1,6 @@
-use super::{Vec2, Vector, VectorConst};
-use num_traits::Float;
 use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
+use num_traits::Float;
+use super::Vec2;
 
 pub type Vec3f = Vec3<f32>;
 pub type Vec3d = Vec3<f64>;
@@ -258,55 +258,11 @@ where
     pub fn triple(&self, former: Self, latter: Self) -> F {
         self.dot(former.cross(latter))
     }
-}
 
-impl<F> VectorConst<F> for Vec3<F>
-where
-    F: Float,
-{
-    const SIZE: usize = 3;
-
-    fn get<const I: usize>(&self) -> F {
-        match I {
-            0 => self.x,
-            1 => self.y,
-            2 => self.z,
-            _ => panic!("Index out of range. Expected 0..=2"),
-        }
-    }
-
-    fn set<const I: usize>(&mut self, v: F) {
-        match I {
-            0 => self.x = v,
-            1 => self.y = v,
-            2 => self.z = v,
-            _ => panic!("Index out of range. Expected 0..=2"),
-        }
-    }
-}
-
-impl<F> Vector<F> for Vec3<F>
-where
-    F: Float,
-{
-    const SIZE: usize = 3;
-
-    fn get(&self, i: usize) -> F {
-        match i {
-            0 => self.x,
-            1 => self.y,
-            2 => self.z,
-            _ => panic!("Index out of range. Expected 0..=2"),
-        }
-    }
-
-    fn set(&mut self, i: usize, v: F) {
-        match i {
-            0 => self.x = v,
-            1 => self.y = v,
-            2 => self.z = v,
-            _ => panic!("Index out of range. Expected 0..=2"),
-        }
+    /// Computes the volume of the cuboid with a diagonal equals to the vector.
+    #[inline]
+    pub fn cuboid_volume(&self) -> F {
+        self.x * self.y * self.z
     }
 }
 

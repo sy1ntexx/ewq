@@ -1,7 +1,6 @@
-use super::{Vector, VectorConst};
-use crate::Complex;
-use num_traits::Float;
 use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
+use num_traits::Float;
+use crate::Complex;
 
 pub type Vec2f = Vec2<f32>;
 pub type Vec2d = Vec2<f64>;
@@ -107,52 +106,6 @@ where
         let l = self.magnitude();
         self.x = self.x / l;
         self.y = self.y / l;
-    }
-}
-
-impl<F> VectorConst<F> for Vec2<F>
-where
-    F: Float,
-{
-    const SIZE: usize = 2;
-
-    fn get<const I: usize>(&self) -> F {
-        match I {
-            0 => self.x,
-            1 => self.y,
-            _ => panic!("Index out of range. Expected 0..=2"),
-        }
-    }
-
-    fn set<const I: usize>(&mut self, v: F) {
-        match I {
-            0 => self.x = v,
-            1 => self.y = v,
-            _ => panic!("Index out of range. Expected 0..=2"),
-        }
-    }
-}
-
-impl<F> Vector<F> for Vec2<F>
-where
-    F: Float,
-{
-    const SIZE: usize = 2;
-
-    fn get(&self, i: usize) -> F {
-        match i {
-            0 => self.x,
-            1 => self.y,
-            _ => panic!("Index out of range. Expected 0..=2"),
-        }
-    }
-
-    fn set(&mut self, i: usize, v: F) {
-        match i {
-            0 => self.x = v,
-            1 => self.y = v,
-            _ => panic!("Index out of range. Expected 0..=2"),
-        }
     }
 }
 
