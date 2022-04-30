@@ -12,9 +12,9 @@ where
     F: Float,
 {
     /// Vector part.
-    v: Vec3<F>,
+    pub v: Vec3<F>,
     /// Scalar part.
-    w: F,
+    pub w: F,
 }
 
 impl<F> Quat<F>
