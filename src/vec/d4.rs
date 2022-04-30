@@ -2,8 +2,8 @@ use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssi
 use super::{Vec2, Vec3};
 use num_traits::Float;
 
-pub type Vec4f = Vec3<f32>;
-pub type Vec4d = Vec3<f64>;
+pub type Vec4f = Vec4<f32>;
+pub type Vec4d = Vec4<f64>;
 
 /// 4D Euclidian vector with X, Y, Z and W components.
 #[derive(Debug, PartialEq, Default, Clone, Copy, PartialOrd)]
@@ -114,6 +114,18 @@ where
     #[inline]
     pub fn dot_normalized(&self, other: Self) -> F {
         self.normalized().dot(other.normalized())
+    }
+
+    /// Computes the angle between two vectors.
+    /// ```
+    /// # use ewq::vec::Vec4f;
+    /// let a = Vec4f::new(1., 0., 0., 0.);
+    /// let b = Vec4f::new(1., 1., 0., 0.);
+    /// assert_eq!(a.angle_to(b), std::f32::consts::FRAC_PI_4);
+    /// ```
+    #[inline]
+    pub fn angle_to(&self, other: Self) -> F {
+        F::acos(self.dot_normalized(other))
     }
 
     /// Scales all of the components by `factor`.

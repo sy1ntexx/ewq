@@ -237,6 +237,18 @@ where
         self.z = self.z / l;
     }
 
+    /// Computes the angle between two vectors.
+    /// ```
+    /// # use ewq::vec::Vec3f;
+    /// let a = Vec3f::new(1., 0., 0.);
+    /// let b = Vec3f::new(1., 1., 0.);
+    /// assert_eq!(a.angle_to(b), std::f32::consts::FRAC_PI_4);
+    /// ```
+    #[inline]
+    pub fn angle_to(&self, other: Self) -> F {
+        F::acos(self.dot_normalized(other))
+    }
+
     /// Computes the cross product between two vectors.
     /// ```
     /// # use ewq::vec::Vec3f;

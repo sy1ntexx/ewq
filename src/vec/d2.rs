@@ -65,6 +65,18 @@ where
         self.normalized().dot(other.normalized())
     }
 
+    /// Computes the angle between two vectors.
+    /// ```
+    /// # use ewq::vec::Vec2f;
+    /// let a = Vec2f::new(1., 0.);
+    /// let b = Vec2f::new(1., 1.);
+    /// assert_eq!(a.angle_to(b), std::f32::consts::FRAC_PI_4);
+    /// ```
+    #[inline]
+    pub fn angle_to(&self, other: Self) -> F {
+        F::acos(self.dot_normalized(other))
+    }
+
     /// Scales all of the components by `factor`.
     #[inline]
     pub fn scale(&mut self, factor: F) {
