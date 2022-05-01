@@ -112,6 +112,18 @@ where
         }
     }
 
+    /// Linearly interpolates between two vectors.
+    /// ```
+    /// # use ewq::vec::Vec2;
+    /// let a = Vec2::new(1., 1.);
+    /// let b = Vec2::new(2., 2.);
+    /// assert_eq!(a.lerp(b, 0.5), Vec2::new(1.5, 1.5));
+    /// ```
+    #[inline]
+    pub fn lerp(&self, other: Self, t: F) -> Self {
+        *self + (other - *self) * (F::one() - t)
+    }
+
     /// Normalizes the vector, preserving direction but reducing its magnitude to `1`.
     #[inline]
     pub fn normalize(&mut self) {

@@ -249,6 +249,18 @@ where
         F::acos(self.dot_normalized(other))
     }
 
+    /// Linearly interpolates between two vectors.
+    /// ```
+    /// # use ewq::vec::Vec3;
+    /// let a = Vec3::new(-1., -1., -1.);
+    /// let b = Vec3::new(1., 1., 1.);
+    /// assert_eq!(a.lerp(b, 0.5), Vec3::new(0., 0., 0.));
+    /// ```
+    #[inline]
+    pub fn lerp(&self, other: Self, t: F) -> Self {
+        *self + (other - *self) * (F::one() - t)
+    }
+
     /// Computes the cross product between two vectors.
     /// ```
     /// # use ewq::vec::Vec3f;

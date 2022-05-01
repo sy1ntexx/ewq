@@ -128,6 +128,12 @@ where
         F::acos(self.dot_normalized(other))
     }
 
+    /// Linearly interpolates between two vectors.
+    #[inline]
+    pub fn lerp(&self, other: Self, t: F) -> Self {
+        *self + (other - *self) * (F::one() - t)
+    }
+
     /// Scales all of the components by `factor`.
     #[inline]
     pub fn scale(&mut self, factor: F) {
