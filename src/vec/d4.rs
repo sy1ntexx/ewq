@@ -28,6 +28,12 @@ where
         Self { x, y, z, w }
     }
 
+    /// Reduces Vec4 to Vec3.
+    #[inline(always)]
+    pub fn reduce(self) -> Vec3<F> {
+        Vec3::new(self.x, self.y, self.z)
+    }
+
     /// Creates new vector by expanding 3D vector.
     #[inline]
     pub fn from_vec3(v: Vec3<F>, w: F) -> Self {

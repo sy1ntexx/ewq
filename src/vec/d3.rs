@@ -136,6 +136,12 @@ where
         Self { x, y, z }
     }
 
+    /// Reduces Vec3 to Vec2.
+    #[inline(always)]
+    pub fn reduce(self) -> Vec2<F> {
+        Vec2::new(self.x, self.y)
+    }
+
     #[inline]
     pub fn from_vec2(v: Vec2<F>, z: F) -> Self {
         Self { x: v.x, y: v.y, z }
