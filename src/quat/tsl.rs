@@ -2,6 +2,7 @@ use crate::{vec::Vec3, Quat};
 use num_traits::Float;
 
 /// Compound struct for rotation and translation.
+#[derive(Debug, Default, Clone, Copy)]
 pub struct QuatT<F>
 where
     F: Float,

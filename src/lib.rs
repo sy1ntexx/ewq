@@ -1,4 +1,5 @@
 //! # Ewq - a small math library.
+#![warn(missing_debug_implementations)]
 
 /// Angles.
 pub mod ang;

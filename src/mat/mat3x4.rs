@@ -5,7 +5,7 @@ use std::ops::Mul;
 pub type Mat3x4f = Mat3x4<f32>;
 pub type Mat3x4d = Mat3x4<f64>;
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Default, Clone, Copy)]
 #[repr(C)]
 pub struct Mat3x4<F>
 where

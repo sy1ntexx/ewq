@@ -8,6 +8,7 @@ pub type Ang3d = Ang3<f32>;
 /// * `+X` - Forward
 /// * `-Y` - Right
 /// * `+Z` - Top
+#[derive(Debug, Default, Clone, Copy)]
 #[repr(C)]
 pub struct Ang3<F>
 where
