@@ -56,6 +56,35 @@ where
         !self.is_inside(vec)
     }
 
+    /// Computes the center of the bounding box.
+    /// ```
+    /// # use ewq::aabb::Aabb3;
+    /// # use ewq::vecf;
+    /// let aabb = Aabb3::new(vecf!(1, 1, 1), vecf!(2, 2, 2));
+    /// assert_eq!(aabb.center(), vecf!(1.5, 1.5, 1.5));
+    /// ```
+    #[inline]
+    pub fn center(&self) -> Vec3<F> {
+        self.min.lerp(self.max, F::one() / (F::one() + F::one()))
+    }
+
+    /// Return the corners of the bounding box.
+    #[inline]
+    pub fn corners(&self) -> [Vec3<F>; 8] {
+        let d = self.max - self.min;
+        [
+            self.min,
+            self.min + Vec3::new(d.x, F::zero(), F::zero()),
+            self.min + Vec3::new(F::zero(), d.y, F::zero()),
+            self.min + Vec3::new(d.x, d.y, F::zero()),
+            
+            self.min + Vec3::new(F::zero(), F::zero(), d.z),
+            self.min + Vec3::new(d.x, F::zero(), d.z),
+            self.min + Vec3::new(F::zero(), d.y, d.z),
+            self.min + Vec3::new(d.x, d.y, d.z),
+        ]
+    }
+
     /// Computes the volume of the bouding box.
     /// ```
     /// # use ewq::{vecf, aabb::Aabb3};
